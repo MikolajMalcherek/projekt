@@ -20,13 +20,16 @@ namespace projekt
         public IConfiguration Configuration { get; }
 
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-        }
 
-        // Metoda Configure będzie konfigurować wszystkie niezbędne metody przepływu, przez które musi przejść zapytanie z API przed zwróceniem odpowiedzi
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseMySQL(Configuration.GetConnectionString("MySqlConnection")));
+    }
+
+
+    // Metoda Configure będzie konfigurować wszystkie niezbędne metody przepływu, przez które musi przejść zapytanie z API przed zwróceniem odpowiedzi
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

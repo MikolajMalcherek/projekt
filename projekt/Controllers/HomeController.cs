@@ -39,7 +39,7 @@ namespace projekt.Controllers
         }
 
 
-
+        /*
         public IActionResult Search(string firstName, string lastName)
         {
             var zawodnicy = _context.Zawodnicy
@@ -50,7 +50,7 @@ namespace projekt.Controllers
 
             return View(zawodnicy);
         }
-
+        */
 
 
     }

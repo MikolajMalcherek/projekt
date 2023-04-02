@@ -1,5 +1,6 @@
 using Microsoft.Identity.Client.Extensions.Msal;
 using MySql.Data.MySqlClient;
+using projekt.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,17 @@ MySqlDataReader myreader = cmd.ExecuteReader();
 while (myreader.Read())
 {
     Console.WriteLine(myreader[0].ToString() + " " + myreader[1].ToString() + "\n");
+}
+
+using var context = new ApplicationDbContext();
+
+if (context.Database.CanConnect())
+{
+    Console.WriteLine("Connected to database");
+}
+else
+{
+    Console.WriteLine("Unable to connect to database");
 }
 
 // Configure the HTTP request pipeline.
