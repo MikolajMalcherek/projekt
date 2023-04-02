@@ -10,10 +10,5 @@ namespace projekt.Models
 
         public string kraj_miejscowosci { get; set; }
 
-        public Miejscowosci()
-        {
-            nazwa_miejscowosci = "";
-            kraj_miejscowosci = "";
-        }
     }
 }

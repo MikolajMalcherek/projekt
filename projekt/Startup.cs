@@ -23,8 +23,8 @@ namespace projekt
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("MySqlConnection")));
+            services.AddDbContext<ApplicationDbContext>();
+            services.AddScoped<HomeControllerService>();
     }
 
 

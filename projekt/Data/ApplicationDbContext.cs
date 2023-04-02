@@ -17,9 +17,22 @@ namespace projekt.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Zawodnik>().ToTable("zawodnicy");
-            modelBuilder.Entity<Wyniki>().ToTable("wyniki");
-            modelBuilder.Entity<Miejscowosci>().ToTable("miejscowosci");
+            // tutaj ustawiamy które kolumny są kolumanmi wymaganyi w bazie danych
+
+            modelBuilder.Entity<Zawodnik>()
+                .Property(r => r.imie_zawodnika)
+                .IsRequired();
+            modelBuilder.Entity<Zawodnik>()
+                .Property(r => r.nazwisko_zawodnika)
+                .IsRequired();
+
+            modelBuilder.Entity<Miejscowosci>()
+                .Property(r => r.nazwa_miejscowosci)
+                .IsRequired();
+
+            modelBuilder.Entity<Miejscowosci>()
+                .Property(r => r.kraj_miejscowosci)
+                .IsRequired();
         }
 
         
@@ -28,7 +41,7 @@ namespace projekt.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseMySQL("server=127.0.0.1;port=3306;user=root;password=;database=projekt_bazy_danych")
+                .UseMySQL("server=127.0.0.1;port=3306;user=root;password=;database=zawody")
                 .UseLoggerFactory(LoggerFactory.Create(b => b
                     .AddConsole()
                     .AddFilter(level => level >= LogLevel.Information)))

@@ -1,7 +1,7 @@
 Popełnione błedy:
 
 1) Program nie łączył się z bazą danych, ponieważ najpierw dodałem migracje dla pliku ApplicationDbContext.cs a później wprowadzałem zmiany w strukturze tabel.
-W tej sytuacji należało usunąć cały folder Migrations i dodać je na nowo za pomocą Tools -> NuGet Package Manager -> Pakcage Manager Console i wpisujemy add-migration nazwa_migracji
+W tej sytuacji należało dodać nową migrację za pomocą Tools -> NuGet Package Manager -> Pakcage Manager Console i wpisujemy add-migration nazwa_migracji
 
 
 2)

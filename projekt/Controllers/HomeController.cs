@@ -19,13 +19,6 @@ namespace projekt.Controllers
             this._context = context;
         }
 
-        public IActionResult Index()
-        {
-            return View(_context.Zawodnicy.ToList());
-        }
-
-        public IList<projekt.Models.Zawodnik> Zawodnicy { get; set; }
-
         public ActionResult wyszukajZawodnikow(string imie, string nazwisko)
         {
             

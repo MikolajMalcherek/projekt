@@ -7,14 +7,10 @@ namespace projekt.Models
     {
         [Key]
         public int idwyniki { get; set; }
-        [ForeignKey("idzawodnicy")]
-        public int idzawodnicy { get; set; }
-        [ForeignKey("idmiejscowosci")]
-        public int idmiejscowosci { get; set; }
         public int wynik { get; set; }
 
-        public Wyniki()
-        {
-        }
+        public virtual Zawodnik Zawodnik { get; set; } // dzięki temu będziemy mieli dostęp danych zawodnika dla konkretnego idwyniku
+        public virtual Miejscowosci Miejscowosci { get; set; } // dzięki temu będziemy mieli dostęp miejscowosci dla konkretnego idwyniku
+
     }
 }

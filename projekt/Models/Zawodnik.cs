@@ -15,12 +15,5 @@ namespace projekt.Models
 
         public string kraj_pochodzenia { get; set; }
 
-        [JsonConstructor]
-        public Zawodnik()
-        {
-            imie_zawodnika = string.Empty;
-            nazwisko_zawodnika = string.Empty;
-            kraj_pochodzenia = string.Empty;
-        }
     }
 }

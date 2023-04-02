@@ -10,7 +10,7 @@ using projekt.Data;
 namespace projekt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230402193224_Init")]
+    [Migration("20230402202951_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace projekt.Migrations
 
                     b.HasKey("idmiejscowosci");
 
-                    b.ToTable("miejscowosci", (string)null);
+                    b.ToTable("Miejscowosci");
                 });
 
             modelBuilder.Entity("projekt.Models.Wyniki", b =>
@@ -46,10 +46,10 @@ namespace projekt.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("idmiejscowosci")
+                    b.Property<int>("Miejscowosciidmiejscowosci")
                         .HasColumnType("int");
 
-                    b.Property<int>("idzawodnicy")
+                    b.Property<int>("Zawodnikidzawodnicy")
                         .HasColumnType("int");
 
                     b.Property<int>("wynik")
@@ -57,7 +57,11 @@ namespace projekt.Migrations
 
                     b.HasKey("idwyniki");
 
-                    b.ToTable("wyniki", (string)null);
+                    b.HasIndex("Miejscowosciidmiejscowosci");
+
+                    b.HasIndex("Zawodnikidzawodnicy");
+
+                    b.ToTable("Wyniki");
                 });
 
             modelBuilder.Entity("projekt.Models.Zawodnik", b =>
@@ -80,7 +84,26 @@ namespace projekt.Migrations
 
                     b.HasKey("idzawodnicy");
 
-                    b.ToTable("zawodnicy", (string)null);
+                    b.ToTable("Zawodnicy");
+                });
+
+            modelBuilder.Entity("projekt.Models.Wyniki", b =>
+                {
+                    b.HasOne("projekt.Models.Miejscowosci", "Miejscowosci")
+                        .WithMany()
+                        .HasForeignKey("Miejscowosciidmiejscowosci")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("projekt.Models.Zawodnik", "Zawodnik")
+                        .WithMany()
+                        .HasForeignKey("Zawodnikidzawodnicy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Miejscowosci");
+
+                    b.Navigation("Zawodnik");
                 });
 #pragma warning restore 612, 618
         }
